@@ -22,5 +22,10 @@
         # cloning the repo via ssh
         git clone git@github.com:sanyassyed/Toronto_Climate_Data.git
         cd Toronto_Climate_Data
-
+        git config --global user.email "ubuntu@ip-172-31-45-230"
+        git config --global user.name "Ubuntu Sarah DELab"
+        git config --list
+        git remote -v
+         # Check the SSH connection with repo from VM using
+        ssh -T git@github.com
     ```
