@@ -28,4 +28,9 @@
         git remote -v
          # Check the SSH connection with repo from VM using
         ssh -T git@github.com
+        # Push changes
+        git add .
+        git commit -m "CICD: Initial commit to repo"
+        git push -u origin main
     ```
+    * 
