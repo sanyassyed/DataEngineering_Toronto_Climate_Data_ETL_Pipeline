@@ -33,4 +33,9 @@
         git commit -m "CICD: Initial commit to repo"
         git push -u origin main
     ```
-    * 
+## Extract
+[extract.sh](./extract.sh): Code to extract data
+## Transform
+[transform.py](./transform.py): Code to concatenate all the downloaded files
+## Load / Save
+[all_years.csv](./all_years.csv): Extracted & Transformed Data
