@@ -33,6 +33,21 @@
         git commit -m "CICD: Initial commit to repo"
         git push -u origin main
     ```
+* Create virtual environment
+```bash
+    # Path to install the virtual env in the current project directory with python 3.10 and pip
+    conda create --prefix ./.my_env python=3.10.9 pip 
+    # Activate the virtual env as follows
+    conda activate .my_env 
+    # to de-activate the virtual env my_env use the below 
+    conda activate 
+    # don't use deactivate just use activate to go to base
+    #### BONUS
+    # view envs in conda
+    conda info --envs
+    # remove conda env
+    conda env remove -p /home/ubuntu/Toronto_Climate_Data/my_env
+```
 ## Extract
 [extract.sh](./extract.sh): Code to extract data
 ## Transform

@@ -1,5 +1,21 @@
 #!/bin/bash
-wget -O https://climate.weather.gc.ca/historical_data/search_historic_data_e.html
+# format csv or xml
+
+format="csv"
 stationId=48549
+# option 1
+# declare -a year=([0]=2020 [1]=2021 [2]=2023)
+# option 2
+# year[0]=2020
+# year[1]=2021
+# year[3]=2023
+# option 3
 year=(2020 2021 2022)
-month="february"
+month=2
+day=14
+# timeframe 1:hourly data 2:daily data 3:monthly data
+timeframe=3 
+
+website="https://climate.weather.gc.ca/climate_data/bulk_data_e.html?format=${format}&stationID=${stationId}&Year=${year}&Month=${month}&Day=${day}&timeframe=${timeframe}&submit=Download+Data"
+
+wget -O ${website}
