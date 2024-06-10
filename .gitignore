@@ -1,2 +1,5 @@
 # virtual envs
 .my_env/*
+
+# data files
+*.csv
