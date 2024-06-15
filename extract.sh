@@ -1,4 +1,5 @@
 #!/bin/bash
+
 # format: csv or xml
 format="csv"
 # 48549 is Toronto City Center
@@ -17,8 +18,10 @@ day=14
 # data on this website is only available in the daily format, other formats are not available
 timeframe=2 
 
+# local variable with project directory path 
 script_path="$(cd "$(dirname "${BASH_SOURCE:-$0}")" && pwd)"
-echo $script_path
+echo "Project Directory is: ${script_path}"
+
 # date time
 log_date=$(date +"%d-%m-%Y-%H-%M-%S")  
 
