@@ -1,13 +1,15 @@
-# Toronto Climate Data Mini Project
+# Todo: Toronto Climate Data Mini Project
 ```bash
     sudo useradd -r Toronto_Climate_Data
     getent passwd
     sudo passwd Toronto_Climate_Data
 ```
-## Create a new user:
-* Create a new user with project name as the username
-* sudo useradd -r Toronto_Climate_data
-* sudo passwd Toronto_Climate_Data (pass*****)
+
+~~## Create a new user:~~
+~~* Create a new user with project name as the username~~
+~~* sudo useradd -r Toronto_Climate_data~~
+~~* sudo passwd Toronto_Climate_Data (pass*****)~~
+
 ## Creating Project Repository
 * Created a remote repo on GitHub with the name `Toronto_Climate_Data`
 * On the EC2 intance `DE-LabSarah` did the following:
