@@ -3,7 +3,7 @@
 #. /etc/profile # source profile upon startup
 
 ##############################################################
-# Setting variables
+# Setting local date variable
 
 # date time
 log_date=$(date +"%d-%m-%Y-%H-%M-%S")  
@@ -34,7 +34,7 @@ timeframe=2
 # Project Path
 # local variable with project directory path 
 # to do
-script_path="$(cd "$(dirname "${BASH_SOURCE:-$0}")" && pwd)"
+script_path="$(cd "$(dirname "$(dirname "${BASH_SOURCE:-$0}")")" && pwd)"
 echo "Project Directory is: ${script_path}"
 
 ##############################################################
@@ -45,15 +45,27 @@ export PROJECT_FOLDER="${script_path}"
 export DATA_FOLDER="${PROJECT_FOLDER}/data"
 # script folder & file
 export SCRIPT_FOLDER="${PROJECT_FOLDER}/script"
-export SCRIPT_FILE_NAME="trasform.py"
+export PYTHON_FILE_NAME="trasform.py"
+export PYTHON_FILE="${SCRIPT_FOLDER}/${PYTHON_FILE_NAME}"
+export SCRIPT_FILE_NAME="extract"
 export SCRIPT_FILE="${SCRIPT_FOLDER}/${SCRIPT_FILE_NAME}"
 # log folder & file
 export LOG_FOLDER="${PROJECT_FOLDER}/logs"
 export LOG_FILE_NAME="${SCRIPT_FILE_NAME}_${log_date}.log"
 export LOG_FILE="${LOG_FOLDER}/${LOG_FILE_NAME}"
 
-echo "${LOG_FILE} ${SCRIPT_FILE} ${DATA_FOLDER}"
+echo "[INFO:] LOG FILE: ${LOG_FILE}"
+echo "[INFO:] SCRIPT FILE: ${SCRIPT_FILE}.sh"
+echo "[INFO:] DATA FOLDER: ${DATA_FOLDER}"
+ 
 
+##############################################################
+# Setting Log Rules
+exec > >(tee ${LOG_FILE}) 2>&1
+
+##############################################################
+# Downloading data
+echo "DOWNLOADING DATA"
 
 #simple
 #website="https://climate.weather.gc.ca/climate_data/bulk_data_e.html?format=${format}&stationID=${stationId}&Year=${year}&Month=${month}&Day=${day}&timeframe=${timeframe}&submit=Download+Data"
@@ -66,5 +78,18 @@ for y in ${year[@]}
 do
     website="https://climate.weather.gc.ca/climate_data/bulk_data_e.html?format=${format}&stationID=${stationId}&Year=${y}&Month=${month}&Day=${day}&timeframe=${timeframe}&submit=Download+Data"
     # to supress the download messages and perform download in quiet mode
-    wget -q -N --content-disposition ${website} -O "${DATA_FOLDER}/y.csv" 
+    wget -q -N --content-disposition ${website} -O "${DATA_FOLDER}/${y}.csv" 
 done
+
+RC1=$?
+if [ ${RC1} != 0 ]; then
+    echo "DOWNLOAD DATA FAILED"
+    echo "[ERROR:] RETURN CODE: ${RC1}"
+    echo "[ERROR:] REFER TO THE LOG FOR THE REASON OF FAILURE"
+    exit 1
+fi
+
+echo "[SUCCESS:] DATA DOWNLOAD COMPLETED SUCCESSFULLY"
+
+
+exit 0
