@@ -35,7 +35,7 @@ timeframe=2
 # local variable with project directory path 
 # to do
 script_path="$(cd "$(dirname "$(dirname "${BASH_SOURCE:-$0}")")" && pwd)"
-echo "Project Directory is: ${script_path}"
+echo "[INFO:] Project Directory is: ${script_path}"
 
 ##############################################################
 # Environment Variables
@@ -43,9 +43,10 @@ echo "Project Directory is: ${script_path}"
 export PROJECT_FOLDER="${script_path}"
 # data folder
 export DATA_FOLDER="${PROJECT_FOLDER}/data"
+export OUTPUT_FOLDER="${PROJECT_FOLDER}/output"
 # script folder & file
 export SCRIPT_FOLDER="${PROJECT_FOLDER}/script"
-export PYTHON_FILE_NAME="trasform.py"
+export PYTHON_FILE_NAME="transform.py"
 export PYTHON_FILE="${SCRIPT_FOLDER}/${PYTHON_FILE_NAME}"
 export SCRIPT_FILE_NAME="extract"
 export SCRIPT_FILE="${SCRIPT_FOLDER}/${SCRIPT_FILE_NAME}"
@@ -65,7 +66,7 @@ exec > >(tee ${LOG_FILE}) 2>&1
 
 ##############################################################
 # Downloading data
-echo "DOWNLOADING DATA"
+echo "[INFO:] DOWNLOADING DATA"
 
 #simple
 #website="https://climate.weather.gc.ca/climate_data/bulk_data_e.html?format=${format}&stationID=${stationId}&Year=${year}&Month=${month}&Day=${day}&timeframe=${timeframe}&submit=Download+Data"
@@ -83,7 +84,7 @@ done
 
 RC1=$?
 if [ ${RC1} != 0 ]; then
-    echo "DOWNLOAD DATA FAILED"
+    echo "[ERROR:] DOWNLOAD DATA FAILED"
     echo "[ERROR:] RETURN CODE: ${RC1}"
     echo "[ERROR:] REFER TO THE LOG FOR THE REASON OF FAILURE"
     exit 1
@@ -91,5 +92,22 @@ fi
 
 echo "[SUCCESS:] DATA DOWNLOAD COMPLETED SUCCESSFULLY"
 
+
+##############################################################
+# Running Python File
+
+echo "[INFO:] RUNNING PYTHON SCRIPT"
+python3 "${PYTHON_FILE}"
+
+RC1=$?
+
+if [ ${RC1} != 0 ]; then
+    echo "[ERROR:] Error in ${PYTHON_FILE}"
+    echo "[ERROR:] RETURN CODE ${RC2}"
+    echo "[ERROR:] REFER TO THE LOG FILE ${LOG_FILE} FOR THE REASON OF FAILURE"
+    exit 1
+fi
+
+echo "[SUCCESS:] PYTHON SCRIPT EXECUTED SUCCESSFULLY"
 
 exit 0
