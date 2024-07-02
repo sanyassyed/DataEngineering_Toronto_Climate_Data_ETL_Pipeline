@@ -38,16 +38,19 @@ export OUTPUT_FOLDER="${PROJECT_FOLDER}/output"
 export SCRIPT_FOLDER="${PROJECT_FOLDER}/script"
 export PYTHON_FILE_NAME="transform.py"
 export PYTHON_FILE="${SCRIPT_FOLDER}/${PYTHON_FILE_NAME}"
-export SCRIPT_FILE_NAME="extract"
+export SCRIPT_FILE_NAME="extract.sh"
 export SCRIPT_FILE="${SCRIPT_FOLDER}/${SCRIPT_FILE_NAME}"
 # log folder & file
 export LOG_FOLDER="${PROJECT_FOLDER}/logs"
 export LOG_FILE_NAME="${SCRIPT_FILE_NAME}_${log_date}.log"
+export LOG_FILE_NAME_PYTHON="${PYTHON_FILE_NAME}_${log_date}.log"
+export LOG_FILE_PYTHON="${LOG_FOLDER}/${LOG_FILE_NAME_PYTHON}"
 export LOG_FILE="${LOG_FOLDER}/${LOG_FILE_NAME}"
 
-echo "[INFO:] LOG FILE: ${LOG_FILE}"
-echo "[INFO:] SCRIPT FILE: ${SCRIPT_FILE}.sh"
 echo "[INFO:] DATA FOLDER: ${DATA_FOLDER}"
+echo "[INFO:] SCRIPT FILE: ${SCRIPT_FILE}"
+echo "[INFO:] LOG FILE FOR ${SCRIPT_FILE_NAME}: ${LOG_FILE}"
+
  
 
 ##############################################################
@@ -82,7 +85,7 @@ echo "[SUCCESS:] DATA DOWNLOAD COMPLETED SUCCESSFULLY"
 # Step 2 & 3 concatenate data to one file with the python script & save output file in the python script 
 # Running Python File
 
-echo "[INFO:] RUNNING PYTHON SCRIPT"
+echo "[INFO:] RUNNING PYTHON SCRIPT ${PYTHON_FILE}"
 python3 "${PYTHON_FILE}"
 
 RC1=$?
