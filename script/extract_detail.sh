@@ -1,4 +1,6 @@
 #!/bin/bash
+#. /home/ubuntu/.bash_profile # source bash file upon starup
+#. /etc/profile # source profile upon startup
 
 ##############################################################
 # Setting local date variable
@@ -13,6 +15,13 @@ log_date=$(date +"%d-%m-%Y-%H-%M-%S")
 format="csv"
 stationId=48549 # 48549 is Toronto City Center
 # declare an array
+# option 1
+# declare -a year=([0]=2020 [1]=2021 [2]=2023)
+# option 2
+# year[0]=2020
+# year[1]=2021
+# year[3]=2023
+# option 3
 year=(2020 2021 2022)
 month=2
 day=14
@@ -59,6 +68,13 @@ exec > >(tee ${LOG_FILE}) 2>&1
 # Downloading data
 echo "[INFO:] DOWNLOADING DATA"
 
+#simple
+#website="https://climate.weather.gc.ca/climate_data/bulk_data_e.html?format=${format}&stationID=${stationId}&Year=${year}&Month=${month}&Day=${day}&timeframe=${timeframe}&submit=Download+Data"
+# --content-disposition looks into the header for an appropriate file name
+#wget --content-disposition ${website}
+# to give your own file name
+#wget ${website} -O test.csv 
+
 for y in ${year[@]}
 do
     website="https://climate.weather.gc.ca/climate_data/bulk_data_e.html?format=${format}&stationID=${stationId}&Year=${y}&Month=${month}&Day=${day}&timeframe=${timeframe}&submit=Download+Data"
@@ -67,8 +83,7 @@ do
 done
 
 RC1=$?
-if [ ${RC1} != 0 ]
-then
+if [ ${RC1} != 0 ]; then
     echo "[ERROR:] DOWNLOAD DATA FAILED"
     echo "[ERROR:] RETURN CODE: ${RC1}"
     echo "[ERROR:] REFER TO THE LOG FOR THE REASON OF FAILURE"
@@ -87,9 +102,8 @@ python3 "${PYTHON_FILE}"
 
 RC1=$?
 
-if [ ${RC1} != 0 ]
-then
-    echo "[ERROR:] Error in python script ${PYTHON_FILE}"
+if [ ${RC1} != 0 ]; then
+    echo "[ERROR:] Error in ${PYTHON_FILE}"
     echo "[ERROR:] RETURN CODE ${RC2}"
     echo "[ERROR:] REFER TO THE LOG FILE ${LOG_FILE} FOR THE REASON OF FAILURE"
     exit 1
@@ -100,6 +114,3 @@ fi
 echo "[SUCCESS:] PYTHON SCRIPT EXECUTED SUCCESSFULLY"
 
 exit 0
-
-# conda activate .my_eve
-# bash script/extract.sh

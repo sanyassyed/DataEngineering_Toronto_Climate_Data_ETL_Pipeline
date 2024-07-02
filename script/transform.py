@@ -17,4 +17,6 @@ for file in files:
     list_of_df.append(df)
 
 df_concat = pd.concat(list_of_df, axis=0, ignore_index=True)
+print("[INFO:] LOGGING: WRITING CONCATENATED FILE TO DISK")
 df_concat.to_csv(output_file_path, index=False)
+print(f"[SUCCESS:] LOGGING: FILE WRITTEN TO {output_file_path}")
