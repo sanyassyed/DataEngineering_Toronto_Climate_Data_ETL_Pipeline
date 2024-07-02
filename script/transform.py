@@ -19,7 +19,7 @@ def main() -> None:
                         datefmt="%Y-%m-%d %H:%M:%S",
                         filename=log_file,)
     
-    logging.info(f"LOG FILE FOR PYTHON SCRIPT: {log_file}")
+    logging.info(f"LOG FILE FOR PYTHON SCRIPT AT: {log_file}")
     
 
     list_of_df = []

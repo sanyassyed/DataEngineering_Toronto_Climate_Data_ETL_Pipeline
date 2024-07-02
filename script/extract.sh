@@ -102,5 +102,6 @@ echo "[SUCCESS:] PYTHON SCRIPT EXECUTED SUCCESSFULLY"
 
 exit 0
 
+# Run this script as follows
 # conda activate .my_eve
 # bash script/extract.sh
