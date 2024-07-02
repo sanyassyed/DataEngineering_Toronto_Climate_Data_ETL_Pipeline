@@ -25,7 +25,7 @@ timeframe=2
 # Project Path
 # local variable with project directory path extracted from the script path by getting the grandparent directory 
 script_path="$(cd "$(dirname "$(dirname "${BASH_SOURCE:-$0}")")" && pwd)"
-echo "[INFO:] Project Directory is: ${script_path}"
+echo "[INFO:] PROJECT DIRECTORY: ${script_path}"
 
 ##############################################################
 # Environment Variables
@@ -47,15 +47,13 @@ export LOG_FILE_NAME_PYTHON="${PYTHON_FILE_NAME}_${log_date}.log"
 export LOG_FILE_PYTHON="${LOG_FOLDER}/${LOG_FILE_NAME_PYTHON}"
 export LOG_FILE="${LOG_FOLDER}/${LOG_FILE_NAME}"
 
-echo "[INFO:] DATA FOLDER: ${DATA_FOLDER}"
-echo "[INFO:] SCRIPT FILE: ${SCRIPT_FILE}"
-echo "[INFO:] LOG FILE FOR ${SCRIPT_FILE_NAME}: ${LOG_FILE}"
-
- 
-
 ##############################################################
 # Setting Log Rules
 exec > >(tee ${LOG_FILE}) 2>&1
+
+echo "[INFO:] DATA FOLDER: ${DATA_FOLDER}"
+echo "[INFO:] SCRIPT FILE: ${SCRIPT_FILE}"
+echo "[INFO:] LOG FILE FOR ${SCRIPT_FILE_NAME} AT: ${LOG_FILE}"
 
 ##############################################################
 # Step 1: download data with shell command
@@ -66,7 +64,7 @@ for y in ${year[@]}
 do
     website="https://climate.weather.gc.ca/climate_data/bulk_data_e.html?format=${format}&stationID=${stationId}&Year=${y}&Month=${month}&Day=${day}&timeframe=${timeframe}&submit=Download+Data"
     # to supress the download messages and perform download in quiet mode
-    wget -q -N --content-disposition ${website} -O "${DATA_FOLDER}/${y}.csv" 
+    wget -N --content-disposition ${website} -O "${DATA_FOLDER}/${y}.csv" 
 done
 
 RC1=$?
