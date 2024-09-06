@@ -63,5 +63,7 @@
 [extract.sh](./extract.sh): Code to extract data
 ## Transform
 [transform.py](./transform.py): Code to concatenate all the downloaded files
+* Resources Used
+    - [Logging](https://youtu.be/pxuXaaT1u3k?si=IVrjperd6hDus-x4)
 ## Load / Save
 [all_years.csv](./all_years.csv): Extracted & Transformed Data
