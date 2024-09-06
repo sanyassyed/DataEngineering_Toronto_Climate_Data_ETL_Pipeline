@@ -91,7 +91,7 @@ RC1=$?
 if [ ${RC1} != 0 ]
 then
     echo "[ERROR:] Error in python script ${PYTHON_FILE}"
-    echo "[ERROR:] RETURN CODE ${RC2}"
+    echo "[ERROR:] RETURN CODE ${RC1}"
     echo "[ERROR:] REFER TO THE LOG FILE ${LOG_FILE} FOR THE REASON OF FAILURE"
     exit 1
 fi
