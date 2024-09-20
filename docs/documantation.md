@@ -60,9 +60,9 @@
     conda env remove -p /home/ubuntu/Toronto_Climate_Data/my_env
 ```
 ## Extract
-[extract.sh](./script/extract.sh): Code to extract data
+[extract.sh](../script/extract.sh): Code to extract data
 ## Transform
-[transform.py](./script/transform.py): Code to concatenate all the downloaded files
+[transform.py](../script/transform.py): Code to concatenate all the downloaded files
 * Resources Used
     - [Logging](https://youtu.be/pxuXaaT1u3k?si=IVrjperd6hDus-x4)
 ## Load / Save
