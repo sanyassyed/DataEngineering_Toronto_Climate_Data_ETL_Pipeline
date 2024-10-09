@@ -1,5 +1,5 @@
 # Toronto Climate Data ETL Pipeline
-This project does the following
+This project extracts the climate data for the specified station id for the specified years, transforms it, concatenates it and loads it into a single csv file.
 ## ETL Steps
 ### Extract
 * Uses bash script at [./script/extract.sh](./script/extract.sh) to     
