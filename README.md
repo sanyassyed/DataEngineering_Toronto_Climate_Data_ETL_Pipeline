@@ -13,7 +13,10 @@ This project does the following
 ## Running the ETL
 Use the following commands to run the ETL Pipeline
 ```bash
+    # activate the virtual environment
     conda activate ./.my_exe
+    # change the permissions of the extract file so it can be executed
     sudo chmod 777 script/extract.sh
+    # run the bash script to run the ETL pipeline
     ./script/extract.sh
 ```
