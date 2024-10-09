@@ -12,7 +12,7 @@
 
 ## Creating Project Repository
 * Created a remote repo on GitHub with the name `Toronto_Climate_Data`
-* On the EC2 intance `DE-LabSarah` did the following:
+* On the EC2 intance ~~`DE-LabSarah`~~ `DeLabSarahNew` did the following:
     * Generated a key for SSH access
     * Added the keys to the `/home/ubuntu/.ssh/` folder
     * Changed the file security of the .pub file
