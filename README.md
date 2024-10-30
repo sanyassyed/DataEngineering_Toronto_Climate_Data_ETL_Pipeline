@@ -10,6 +10,10 @@ This project extracts the climate data for the specified station id for the spec
 * The transform python script does the following
     * Pulls all the csv files for all years
     * Joins the data from all years into one dataframe and loads/writes to the file `output/all_years.csv`
+
+## Architecture
+![ETL Pipeline](./TorontoClimateDataETL.drawio.pdf)
+
 ## Running the ETL
 Use the following commands to run the ETL Pipeline
 ```bash
