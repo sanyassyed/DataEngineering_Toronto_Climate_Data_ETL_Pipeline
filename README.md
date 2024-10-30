@@ -12,7 +12,10 @@ This project extracts the climate data for the specified station id for the spec
     * Joins the data from all years into one dataframe and loads/writes to the file `output/all_years.csv`
 
 ## Architecture
-![ETL Pipeline](docs/TorontoClimateDataETL.drawio.pdf)
+Also available [here](docs/TorontoClimateDataETL.drawio.pdf)
+<br>
+<br>
+![ETL Architecture](docs/TorontoClimateDataETL.jpg "ETL Diagram")
 
 ## Running the ETL
 Use the following commands to run the ETL Pipeline
